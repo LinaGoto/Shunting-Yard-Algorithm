@@ -3,6 +3,12 @@
 #include <fstream>
 #include <bits/stdc++.h>
 
+/*Lina Goto
+3/5/24
+Your program should read a mathematical expression entered with infix notation, using spaces between each token. It will then output the postfix expression. You should then be able to output infix, prefix, or postfix notation, which is a recursive print from the expression tree.
+ */
+
+
 using namespace std;
 
 enum { zero, one, two, three, four, five, six, seven, eight, nine, minus, plus, divide, multiply, power, rparenthesis, lparenthesis, space, none };
@@ -289,27 +295,44 @@ void shunting::print_infix(tree_t *current) {
 }
 
 int main(void) {
-  //  char input[] = "1 * 2 + 3";
+  //char input[] = "1 * 2 + 3";
   //  char input[] = "1 + 2 * 3";
-  //  char input[] = "1 * ( 2 + 3 )";
+  //    char input[] = "1 * ( 2 + 3 )";
   //  char input[] = "1 - 2 + 3";
   //  char input[] = "1 * 2 ^ 3 + 4";
   //  char input[] = "1 + 2 + 3 + 4";
-    char input[] = "3 + 4 * 2 / ( 1 - 5 ) ^ 2";
-  
-  /* encoding */
-  shunting shunting(input);
+  //char input[] = "3 + 4 * 2 / ( 1 - 5 ) ^ 2";
 
-  /* print encoded data */
-  shunting.printqueue();
 
-  /* generate tree */
-  shunting.gentree();
-  
-  /* print tree */
-  shunting.print_postfix(NULL);
-  shunting.print_infix  (NULL);
-  shunting.print_prefix (NULL);
+    char input [1000];
+    cout << "Enter the equation:";
+    cin.get (input, 1000);
+    cin.get();
+
+    //encode
+    shunting shunting (input);
+    //print encoded data
+    shunting.printqueue();
+
+    // generate tree
+    shunting.gentree();
+    
+    char output [100];
+    cout << "Printout by: postfix, infix, or prefix" << endl;
+    cin.get (output, 100);
+    cin.get();
+
+    if (output[0] == 'P' || output[0] == 'p'){
+      if (output[1] == 'O' || output[1] == 'o'){
+	shunting.print_postfix(NULL);
+      }
+      if (output[1] == 'R' || output[1] == 'r'){
+	shunting.print_prefix(NULL);
+      }
+    }
+    if (output[0] == 'I' || output[0] == 'i'){
+      shunting.print_infix(NULL);
+    }
   
   return 0;
 }
