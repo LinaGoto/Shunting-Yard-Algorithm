@@ -11,6 +11,7 @@ Your program should read a mathematical expression entered with infix notation, 
 
 using namespace std;
 
+/* enumeration */
 enum { zero, one, two, three, four, five, six, seven, eight, nine, minus, plus, divide, multiply, power, rparenthesis, lparenthesis, space, none };
 
 static char optype   [] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', '/', '*', '^', ')', '(', ' ', '@'};
@@ -64,6 +65,7 @@ tree_t *shunting::gendata(char value) {
   return data;
 }
 
+/* enqueue */
 void shunting::enqueue(char value) {
   tree_t *current = queue;
   tree_t *data = gendata(value);
@@ -75,6 +77,7 @@ void shunting::enqueue(char value) {
   }
 }
 
+/* dequeue */
 char shunting::dequeue(void) {
   tree_t *current = queue;
   char value = none;
@@ -88,12 +91,14 @@ char shunting::dequeue(void) {
   return value;
 }
 
+/* insert new element on stack */
 void shunting::push(char value) {
   tree_t *data = gendata(value);
   data -> next = stack;
   stack = data;
 }
 
+/* remove the topmost element of the stack */
 char shunting::pop(void) {
   tree_t *current = stack;
   char value = none;
@@ -107,6 +112,7 @@ char shunting::pop(void) {
   return value;
 }
 
+/* get the value of the topmost element of the stack */
 char shunting::peek(void) {
   char value = none;
   if (stack != NULL) value = stack -> value;
@@ -148,7 +154,7 @@ shunting::shunting(char *input) {
 	push(cvalue);
       } else if (cvalue == rparenthesis) {
 	/* discard cvalue */
-	/* retrieve operator until '(' is found */
+https://github.com/LinaGoto/Shunting-Yard-Algorithm.git	/* retrieve operator until '(' is found */
 	do {
 	  nvalue = pop();
 	  if (nvalue != lparenthesis) {
@@ -295,6 +301,7 @@ void shunting::print_infix(tree_t *current) {
 }
 
 int main(void) {
+  /* trial stuff*/
   //char input[] = "1 * 2 + 3";
   //  char input[] = "1 + 2 * 3";
   //    char input[] = "1 * ( 2 + 3 )";
