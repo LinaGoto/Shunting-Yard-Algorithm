@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
-#include <bits/stdc++.h>
 
 /*Lina Goto
 3/5/24
